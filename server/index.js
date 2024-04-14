@@ -67,3 +67,12 @@ mongoose
         // Post.insertMany(posts);
     })
     .catch((error) => console.log(`${error} did not connect`))
+
+// Deploy
+const __dirname_ = path.resolve();
+
+app.use(express.static(path.join(__dirname_, '/client/dist')));
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname_, 'client', 'dist', 'index.html'))
+})
